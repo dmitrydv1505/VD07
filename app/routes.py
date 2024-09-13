@@ -8,7 +8,7 @@ from app.models import User
 # Импортируем экземпляр приложения Flask, базу данных и инструмент для хэширования паролей
 from app import app, db, bcrypt
 # Импортируем формы регистрации и входа из приложения
-from app.forms import RegistrationForm, LoginForm
+from app.forms import RegistrationForm, LoginForm, EditProfileForm
 
 @app.route('/')
 @app.route('/home')
@@ -81,3 +81,12 @@ def logout():
 def account():
     # Возвращаем HTML-шаблон account.html для отображения пользователю
     return render_template('account.html')
+
+@app.route('/edit_profile', methods=['GET', 'POST'])
+def edit_profile():
+    form = EditProfileForm()
+    if form.validate_on_submit():
+        # Здесь ваш код для обновления профиля пользователя в базе данных
+        return redirect(url_for('home'))   # Перенаправляем пользователя на домашнюю страницу
+
+    return render_template('edit_profile.html', title='Редактирование профиля', form=form)

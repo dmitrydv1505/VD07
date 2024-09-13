@@ -47,3 +47,9 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Запомни меня')
     # Кнопка отправки формы
     submit = SubmitField('Login')
+
+class EditProfileForm(FlaskForm):
+    username = StringField('Имя пользователя', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Пароль', validators=[DataRequired()])
+    submit = SubmitField('Сохранить изменения')

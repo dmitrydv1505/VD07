@@ -1,6 +1,7 @@
 
 # Импортируем необходимые объекты из нашего приложения: базу данных и менеджер входа.
 from app import db, login_manager
+from flask_sqlalchemy import SQLAlchemy
 # # Импортируем UserMixin для упрощения работы с пользователями в Flask-Login.
 from flask_login import UserMixin
 
@@ -9,6 +10,7 @@ from flask_login import UserMixin
 def load_user(user_id):
     # Возвращает пользователя из базы данных по его ID.
     return User.query.get(int(user_id))
+
 
 # Создаём класс User, который будет представлять пользователей в нашей базе данных.
 class User(db.Model, UserMixin):
